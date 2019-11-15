@@ -37,7 +37,17 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                String str=String.format("%02d",TTable.size()+1);
+
+                TTable.add(str);
+                inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //Reference ViewPager defined in activity
+                vp=(ViewPager)findViewById(R.id.viewPager);
+                //set the adapter that will create the individual pages
+                vp.setAdapter(new MyPagesAdapter());
+
+                Snackbar.make(view, "Added " +str, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -86,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             ((ViewPager) container).removeView((View) object);
             object=null;
         }
+
+
 
 
 
