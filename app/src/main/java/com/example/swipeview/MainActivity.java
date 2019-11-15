@@ -15,10 +15,13 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
-    String pageData[];          //Stores the text to swipe.
+  //  String pageData[];          //Stores the text to swipe.
+    ArrayList<String> TTable = new ArrayList<String>();
     LayoutInflater inflater;    //Used to create individual pages
     ViewPager vp;               //Reference to class to swipe views
 
@@ -40,13 +43,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        pageData=getResources().getStringArray(R.array.desserts);
+      //  pageData=getResources().getStringArray(R.array.desserts);
+        TTable.add("One");
+        TTable.add("Two");
+        TTable.add("Three");
+        TTable.add("Four");
         //get an inflater to be used to create single pages
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //Reference ViewPager defined in activity
         vp=(ViewPager)findViewById(R.id.viewPager);
         //set the adapter that will create the individual pages
         vp.setAdapter(new MyPagesAdapter());
+
 
     }
 
@@ -56,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             //Return total pages, here one for each data item
-            return pageData.length;
+            return  TTable.size();  //pageData.length;
         }
         //Create the given page (indicated by position)
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View page = inflater.inflate(R.layout.content_main, null);
-            ((TextView)page.findViewById(R.id.textMessage)).setText(pageData[position]);
+            ((TextView)page.findViewById(R.id.textMessage)).setText(TTable.get(position));
             //Add the page to the front of the queue
             ((ViewPager) container).addView(page, 0);
             return page;
@@ -78,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
             ((ViewPager) container).removeView((View) object);
             object=null;
         }
+
+
+
     }
 
 
