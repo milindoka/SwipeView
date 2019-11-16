@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-  //  String pageData[];          //Stores the text to swipe.
+
     ArrayList<String> TTable = new ArrayList<String>();
     LayoutInflater inflater;    //Used to create individual pages
     ViewPager vp;               //Reference to class to swipe views
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                int pos=vp.getCurrentItem();
                 String str=String.format("%02d",TTable.size()+1);
 
                 TTable.add(str);
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 //set the adapter that will create the individual pages
                 vp.setAdapter(new MyPagesAdapter());
 
+                vp.setCurrentItem(pos);
                 Snackbar.make(view, "Added " +str, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -54,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
 
       //  pageData=getResources().getStringArray(R.array.desserts);
-        TTable.add("One");
-        TTable.add("Two");
-        TTable.add("Three");
-        TTable.add("Four");
+        TTable.add("01");
+        TTable.add("02");
+        TTable.add("03");
+        TTable.add("04");
         //get an inflater to be used to create single pages
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //Reference ViewPager defined in activity
@@ -97,13 +99,7 @@ public class MainActivity extends AppCompatActivity {
             object=null;
         }
 
-
-
-
-
     }
-
-
 
 
 
